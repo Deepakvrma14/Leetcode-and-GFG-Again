@@ -13,18 +13,30 @@ class Solution
     public:
         ListNode* reverseList(ListNode *head)
         {
-            if(head == NULL || head->next == NULL){
-                return head;
-            }
+            // if(head == NULL || head->next == NULL){
+            //     return head;
+            // }
             ListNode* prev = NULL;
             ListNode* curr = head;
-            while (curr != NULL)
-            {
-                ListNode* frwd = curr->next;
-                curr->next  =prev;
-                prev = curr;
-                curr= frwd;
+            solution(head, prev, curr);
+            return head;
+            // while (curr != NULL)
+            // {
+            //     ListNode* frwd = curr->next;
+            //     curr->next  =prev;
+            //     prev = curr;
+            //     curr= frwd;
+            // }
+            // return prev;
+        }
+        void solution( ListNode* &head,  ListNode* prev,  ListNode* curr){
+            if(curr == NULL){
+                head= prev;
+                return;
             }
-            return prev;
+            
+            ListNode* frwd = curr->next;
+            solution(head, curr, frwd);
+            curr->next =  prev;
         }
 };
